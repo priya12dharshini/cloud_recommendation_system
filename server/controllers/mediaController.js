@@ -9,7 +9,7 @@ const formDataSchema = new mongoose.Schema({
   ]
 });
 
-const FormDataModel = mongoose.model('FormData', formDataSchema);
+const FormDataModel = mongoose.model('mediaFormData', formDataSchema);
 
 const submitForm = async (req, res) => {
   try {
@@ -31,12 +31,12 @@ const submitForm = async (req, res) => {
     ];
 
     // Create a new FormDataModel instance
-    const formData = new FormDataModel({
+    const mediaformData = new FormDataModel({
       responses: questionsAndAnswers,
     });
 
     // Save the data to MongoDB
-    await formData.save();
+    await mediaformData.save();
 
     res.status(201).json({ success: true, message: 'Form data saved successfully' });
   } catch (error) {

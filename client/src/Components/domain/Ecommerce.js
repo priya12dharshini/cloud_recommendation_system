@@ -25,11 +25,10 @@ export default function Ecommerce() {
     setEcomFormData(updatedFormData);
   };
 
-  const handleTextChange = (event, question) => {
+  const handleRadioChange = (event, question) => {
     const value = event.target.value;
-    const updatedFormData = { ...ecomformData, [question]: value };
-    setEcomFormData(updatedFormData);
-  };
+    setEcomFormData({ ...ecomformData, [question]: value });
+  }
 
   // Media.js
 const handleSubmit = async (e) => {
@@ -79,13 +78,16 @@ try {
                 onChange={(e) => handleCheckboxChange(e, 'qn2')} /> Cybersecurity and fraud prevention   <br />
                 </label>
                 <label><b>3. What is the expected peak sales period?   </b><br/>
-                <input type="text" name="qn3" onChange={(e) => handleTextChange(e, 'qn3')} /> <br/>
+                <input type="radio" name="qn3" value="Yes" onChange={(e) => handleRadioChange(e, 'qn3')} /> Yes <br />
+                <input type="radio" name="qn3" value="No" onChange={(e) => handleRadioChange(e, 'qn3')} /> No <br />
                 </label>
                 <label><b>4. Are you interested in making your website load faster and ensuring a better experience for your visitors?  </b><br/>
-                <input type="text" name="qn4" onChange={(e) => handleTextChange(e, 'qn4')}  /><br />
+                <input type="radio" name="qn4" value="Yes" onChange={(e) => handleRadioChange(e, 'qn4')} /> Yes <br />
+                <input type="radio" name="qn4" value="No" onChange={(e) => handleRadioChange(e, 'qn4')} /> No <br />
                 </label>
                 <label><b>5. Would you like to implement an ecommerce chatbot for customer inquiries and support?  </b><br/>
-                <input type="text" name="qn5" onChange={(e) => handleTextChange(e, 'qn5')} /><br />
+                <input type="radio" name="qn5" value="Yes" onChange={(e) => handleRadioChange(e, 'qn5')} /> Yes <br />
+                <input type="radio" name="qn5" value="No" onChange={(e) => handleRadioChange(e, 'qn5')} /> No <br />
                 </label>
                 <label><b>6. What is the expected geographical distribution of your users?</b><br/>
                 <input type="checkbox" name="qn6" value="Local / Regional"
@@ -96,16 +98,20 @@ try {
                 onChange={(e) => handleCheckboxChange(e, 'qn6')} /> Global <br />
                 </label>
                 <label><b>7. Do you require cloud-based tools for inventory demand forecasting and stock optimization?  </b><br/>
-                <input type="text" name="qn7" onChange={(e) => handleTextChange(e, 'qn7')}/><br />
+                <input type="radio" name="qn7" value="Yes" onChange={(e) => handleRadioChange(e, 'qn7')} /> Yes <br />
+                <input type="radio" name="qn7" value="No" onChange={(e) => handleRadioChange(e, 'qn7')} /> No <br />
                 </label>
                 <label><b>8. Are you interested in customer sentiment analysis and social media monitoring ?   </b><br/>
-                <input type="text" name="qn8" onChange={(e) => handleTextChange(e, 'qn8')}  /><br />
+                <input type="radio" name="qn8" value="Yes" onChange={(e) => handleRadioChange(e, 'qn8')} /> Yes <br />
+                <input type="radio" name="qn8" value="No" onChange={(e) => handleRadioChange(e, 'qn8')} /> No <br />
                 </label>
                 <label><b>9. Are you looking for a solution to manage customer reviews and feedback effectively?   </b><br/>
-                <input type="text" name="qn9" onChange={(e) => handleTextChange(e, 'qn9')}  /><br />
+                <input type="radio" name="qn9" value="Yes" onChange={(e) => handleRadioChange(e, 'qn9')} /> Yes <br />
+                <input type="radio" name="qn9" value="No" onChange={(e) => handleRadioChange(e, 'qn9')} /> No <br />
                 </label>
                 <label><b>10. Are you looking for a system to manage returns and refunds efficiently?</b><br/>
-                <input type="text" name="qn10" onChange={(e) => handleTextChange(e, 'qn10')}  /><br />
+                <input type="radio" name="qn10" value="Yes" onChange={(e) => handleRadioChange(e, 'qn10')} /> Yes <br />
+                <input type="radio" name="qn10" value="No" onChange={(e) => handleRadioChange(e, 'qn10')} /> No <br />
                 </label>
                 <label><b>11. How often you would like to know the updates of your usage?</b><br/>
                 <input type="checkbox" name="qn11" value="Daily" onChange={(e) => handleCheckboxChange(e, 'qn11')} />Daily  <br/>
@@ -114,13 +120,16 @@ try {
                 <input type="checkbox" name="qn11" value="Ondemand" onChange={(e) => handleCheckboxChange(e, 'qn11')} />Ondemand <br />
                 </label>
                 <label><b>12. Do you have any existing software?</b><br/>
-                <input type="text" name="qn12" onChange={(e) => handleTextChange(e, 'qn12')} /><br />
+                <input type="radio" name="qn12" value="Yes" onChange={(e) => handleRadioChange(e, 'qn12')} /> Yes <br />
+                <input type="radio" name="qn12" value="No" onChange={(e) => handleRadioChange(e, 'qn12')} /> No <br />
                 </label>
                 <label><b>13. Are you looking for a system to optimize pricing strategies and discounts for your products?  </b><br/>
-                <input type="text" name="qn13" onChange={(e) => handleTextChange(e, 'qn13')} /><br />
+                <input type="radio" name="qn13" value="Yes" onChange={(e) => handleRadioChange(e, 'qn13')} /> Yes <br />
+                <input type="radio" name="qn13" value="No" onChange={(e) => handleRadioChange(e, 'qn13')} /> No <br />
                 </label>
                 <label><b>14. Would you like to enhance the customer shopping experience through mobile apps ?</b><br/>
-                <input type="text" name="qn14" onChange={(e) => handleTextChange(e, 'qn14')} /><br />
+                <input type="radio" name="qn14" value="Yes" onChange={(e) => handleRadioChange(e, 'qn14')} /> Yes <br />
+                <input type="radio" name="qn14" value="No" onChange={(e) => handleRadioChange(e, 'qn14')} /> No <br />
                 </label>
                 <center><button  className="btn1" >Submit</button></center>
             </div>

@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8000;
 const mediaRoutes = require('./routes/mediaRoutes');
-const hformRoutes = require('./routes/hformRoutes');
+const htformRoutes = require('./routes/htformRoutes');
 const ecomRoutes = require('./routes/ecomRoutes');
 const educRoutes = require('./routes/educRoutes');
 const finRoutes = require('./routes/finRoutes');
@@ -31,7 +31,7 @@ mongoose.connect("mongodb+srv://spd85250:priya@cluster0.x7hwgog.mongodb.net/?ret
 });
 
 app.use('/api/media', mediaRoutes);
-app.use('/api/hform', hformRoutes);
+app.use('/api/hform', htformRoutes);
 app.use('/api/ecom', ecomRoutes);
 app.use('/api/educ', educRoutes);
 app.use('/api/fin', finRoutes);

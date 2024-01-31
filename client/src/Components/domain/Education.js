@@ -23,17 +23,11 @@ export default function Education() {
     setEduFormData(updatededuFormData);
   };
 
-  const handleTextChange = (event, question) => {
-    const value = event.target.value;
-    const updatedEduFormData = { ...eduFormData, [question]: value };
-    setEduFormData(updatedEduFormData);
-  };
-
   const handleRadioChange = (event, question) => {
     const value = event.target.value;
     setEduFormData({ ...eduFormData, [question]: value });
   };
-  // Media.js
+
 const handleSubmit = async (e) => {
 e.preventDefault();
 
@@ -80,19 +74,24 @@ try {
                 onChange={(e) => handleCheckboxChange(e, 'qn2')} /> Mobile learning apps <br />
                 </label>
                 <label><b>3. Do you require a cloud solution for online testing and examination management?</b><br/>
-                <input type="text" name="qn3" onChange={(e) => handleTextChange(e, 'qn3')} /><br />
+                <input type="radio" name="qn3" value="Yes" onChange={(e) => handleRadioChange(e, 'qn3')} /> Yes <br />
+                <input type="radio" name="qn3" value="No" onChange={(e) => handleRadioChange(e, 'qn3')} /> No <br />
                 </label>
                 <label><b>4. Would you like to implement a virtual library system for students to access digital resources and books?</b><br/>
-                <input type="text" name="qn4" onChange={(e) => handleTextChange(e, 'qn4')} /><br />
+                <input type="radio" name="qn4" value="Yes" onChange={(e) => handleRadioChange(e, 'qn4')} /> Yes <br />
+                <input type="radio" name="qn4" value="No" onChange={(e) => handleRadioChange(e, 'qn4')} /> No <br />
                 </label>
                 <label><b>5. Do you require a cloud solution for managing educational research and data analysis projects?</b><br/>
-                <input type="text" name="qn5" onChange={(e) => handleTextChange(e, 'qn5')} /><br />
+                <input type="radio" name="qn5" value="Yes" onChange={(e) => handleRadioChange(e, 'qn5')} /> Yes <br />
+                <input type="radio" name="qn5" value="No" onChange={(e) => handleRadioChange(e, 'qn5')} /> No <br />
                 </label>
                 <label><b>6. Do you require cloud-based tools for remote student counseling and support services?</b><br/>
-                <input type="text" name="qn6" onChange={(e) => handleTextChange(e, 'qn6')} /><br />
+                <input type="radio" name="qn6" value="Yes" onChange={(e) => handleRadioChange(e, 'qn6')} /> Yes <br />
+                <input type="radio" name="qn6" value="No" onChange={(e) => handleRadioChange(e, 'qn6')} /> No <br />
                 </label>
                 <label><b>7. Are you interested in a cloud service for interactive virtual labs and science experiments for students?</b><br/>
-                <input type="text" name="qn7" onChange={(e) => handleTextChange(e, 'qn7')} /><br />
+                <input type="radio" name="qn7" value="Yes" onChange={(e) => handleRadioChange(e, 'qn7')} /> Yes <br />
+                <input type="radio" name="qn7" value="No" onChange={(e) => handleRadioChange(e, 'qn7')} /> No <br />
                 </label>
                 <label><b>8. What is the expected geographical distribution of your users?</b><br/>
                 <input type="checkbox" name="qn8"  onChange={(e) => handleCheckboxChange(e, 'qn8')}  /> Local / Regional <br />
@@ -100,10 +99,12 @@ try {
                 <input type="checkbox" name="qn8"  onChange={(e) => handleCheckboxChange(e, 'qn8')}  /> Global <br />
                 </label>
                 <label><b>9. Would you like to implement chatbot for managing queries?  </b><br/>
-                <input type="text" name="qn9" onChange={(e) => handleTextChange(e, 'qn9')}  /> <br />
+                <input type="radio" name="qn9" value="Yes" onChange={(e) => handleRadioChange(e, 'qn9')} /> Yes <br />
+                <input type="radio" name="qn9" value="No" onChange={(e) => handleRadioChange(e, 'qn9')} /> No <br />
                 </label>
                 <label><b>10. Do you require a cloud service for secure student identity verification and authentication? </b><br/>
-                <input type="text" name="qn10" onChange={(e) => handleTextChange(e, 'qn10')}  /><br />
+                <input type="radio" name="qn10" value="Yes" onChange={(e) => handleRadioChange(e, 'qn10')} /> Yes <br />
+                <input type="radio" name="qn10" value="No" onChange={(e) => handleRadioChange(e, 'qn10')} /> No <br />
                 </label>
                 <label><b>11. What is your expected user load? </b><br />
                 <input type="radio" name="qn11" value="A few hundred users (>100)" onChange={(e) => handleRadioChange(e, 'qn11')} /> A few hundred users (&gt;100) <br />

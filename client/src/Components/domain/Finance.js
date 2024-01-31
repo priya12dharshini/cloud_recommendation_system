@@ -22,11 +22,6 @@ export default function Finance() {
     setFinFormData(updatedFinFormData);
   };
 
-  const handleTextChange = (event, question) => {
-    const value = event.target.value;
-    const updatedFinFormData = { ...finFormData, [question]: value };
-    setFinFormData(updatedFinFormData);
-  };
 
   const handleRadioChange = (event, question) => {
     const value = event.target.value;
@@ -38,7 +33,7 @@ const handleSubmit = async (e) => {
 e.preventDefault();
 
 try {
-  const response = await fetch('http://localhost:8000/api/media/submitForm', { // Update the URL
+  const response = await fetch('http://localhost:8000/api/fin/submitFinForm', { // Update the URL
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -80,10 +75,12 @@ try {
                 onChange={(e) => handleCheckboxChange(e, 'qn2')}/> Hosting Website <br />
                 </label>
                 <label><b>3. Would you like to implement a financial chatbot for customer inquiries and support?</b><br/>
-                <input type="text" name="qn3" onChange={(e) => handleTextChange(e, 'qn3')}/> <br />
+                <input type="radio" name="qn3" value="Yes" onChange={(e) => handleRadioChange(e, 'qn3')} /> Yes <br />
+                <input type="radio" name="qn3" value="No" onChange={(e) => handleRadioChange(e, 'qn3')} /> No <br />
                 </label>
                 <label><b>4. Are you looking for a system to manage and track insurance claims and customer policy details?</b><br/>
-                <input type="text" name="qn4" onChange={(e) => handleTextChange(e, 'qn4')}  /><br />
+                <input type="radio" name="qn4" value="Yes" onChange={(e) => handleRadioChange(e, 'qn4')} /> Yes <br />
+                <input type="radio" name="qn4" value="No" onChange={(e) => handleRadioChange(e, 'qn4')} /> No <br />
                 </label>
                 <label><b>5. What is the expected geographical distribution of your users?</b><br/>
                 <input type="checkbox" name="qn5" value="Local / Regional"
@@ -94,7 +91,8 @@ try {
                 onChange={(e) => handleCheckboxChange(e, 'qn5')}/> Global <br />
                 </label>
                 <label><b>6. Do you have any existing software?</b><br/>
-                <input type="text" name="qn6" onChange={(e) => handleTextChange(e, 'qn6')}  /><br />
+                <input type="radio" name="qn6" value="Yes" onChange={(e) => handleRadioChange(e, 'qn6')} /> Yes <br />
+                <input type="radio" name="qn6" value="No" onChange={(e) => handleRadioChange(e, 'qn6')} /> No <br />
                 </label>
                 <label><b>7. What is your expected user load? </b><br/>
                 <input type="radio" name="qn7" value="A few hundred users (&gt;100)" onChange={(e) => handleRadioChange(e, 'qn7')} /> A few hundred users (&gt;100) <br/> 
@@ -103,13 +101,16 @@ try {
                 <input type="radio" name="qn7" value="Uncertain" onChange={(e) => handleRadioChange(e, 'qn7')}/>Uncertain <br />
                 </label>
                 <label><b>8. Are you looking to use a cloud solution for handling payments and currency exchange across borders?</b><br/>
-                <input type="text" name="qn8" onChange={(e) => handleTextChange(e, 'qn8')}/><br />
+                <input type="radio" name="qn8" value="Yes" onChange={(e) => handleRadioChange(e, 'qn8')} /> Yes <br />
+                <input type="radio" name="qn8" value="No" onChange={(e) => handleRadioChange(e, 'qn8')} /> No <br />
                 </label>
                 <label><b>9. Would you like to implement a system for secure document management and collaboration among your financial team and clients?</b><br/>
-                <input type="text" name="qn9" onChange={(e) => handleTextChange(e, 'qn9')} /> <br />
+                <input type="radio" name="qn9" value="Yes" onChange={(e) => handleRadioChange(e, 'qn9')} /> Yes <br />
+                <input type="radio" name="qn9" value="No" onChange={(e) => handleRadioChange(e, 'qn9')} /> No <br />
                 </label>
                 <label><b>10. Do you require cloud tools for managing customer financial transactions and accounting?</b><br/>
-                <input type="text" name="qn10" onChange={(e) => handleTextChange(e, 'qn10')} /><br />
+                <input type="radio" name="qn10" value="Yes" onChange={(e) => handleRadioChange(e, 'qn10')} /> Yes <br />
+                <input type="radio" name="qn10" value="No" onChange={(e) => handleRadioChange(e, 'qn10')} /> No <br />
                 </label>
                 <center><button className="btn1" >Submit</button></center>
             </div>
