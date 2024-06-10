@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './Components/home/Home';
 import Register from './Components/register/Register'
 import Login from './Components/login/Login'
+ 
 import Healthcare from './Components/domain/Healthcare';
 import Ecommerce from './Components/domain/Ecommerce';
 import Education  from './Components/domain/Education';
@@ -10,10 +11,7 @@ import Media from './Components/domain/Media';
 import Machine_learning from './Components/domain/Machine_learning';
 import { Route, Routes} from 'react-router-dom';
 import NavigationBar from './Components/NavigationBar';
-import Answers from './Components/Answers';
-
-
-
+import Results from './Components/Result';
 const App = () => {
   return (
     <>
@@ -29,7 +27,7 @@ const App = () => {
         <Route path='/fin' element={<Finance />} />
         <Route path='/media' element={<Media />} />
         <Route path='/ml' element={<Machine_learning />} />
-        <Route path="/answers" element={<Answers />} />
+        <Route path='/result' element={<Results />} />
       </Routes>
     </>
   );

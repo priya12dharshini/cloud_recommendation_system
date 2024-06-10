@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './domain.css'
 
 
 export default function Healthcare() {
+
+  const navigate = useNavigate();
 
   const [healthFormData, setHealthFormData] = useState({
     qn1: [],
@@ -17,6 +20,8 @@ export default function Healthcare() {
     qn10: '',
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleCheckboxChange = (event, question) => {
     const value = event.target.value;
     const updatedhealthFormData = { ...healthFormData, [question]: [...healthFormData[question], value] };
@@ -30,8 +35,9 @@ export default function Healthcare() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true); 
     try {
+      console.log('Health Form Data:', healthFormData);
       const response = await fetch('http://localhost:8000/api/hform/submitHealthForm', {
         method: 'POST',
         headers: {
@@ -40,10 +46,17 @@ export default function Healthcare() {
         body: JSON.stringify(healthFormData),
       });
 
+      if(!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       const data = await response.json();
       console.log(data);
+      navigate('/result', {state: {data}});
     } catch(error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -108,7 +121,8 @@ export default function Healthcare() {
                 <input type="radio" name="qn10" value="Yes" onChange={(e) => handleRadioChange(e, 'qn10')} /> Yes <br />
                 <input type="radio" name="qn10" value="No" onChange={(e) => handleRadioChange(e, 'qn10')} /> No <br />
                 </label>
-                <center><button className="btn1">Submit</button></center>
+                <center><button className="btn1" disabled={isLoading}>Submit</button></center>
+                {isLoading && <p>Loading...</p>}
             </div>
         </form>
     </div>

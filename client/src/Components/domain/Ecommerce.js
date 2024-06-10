@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import './domain.css'
 
 export default function Ecommerce() {
+
+  const navigate = useNavigate();
+
   const [ecomformData, setEcomFormData] = useState({
     qn1: [],
     qn2: [],
@@ -19,11 +23,20 @@ export default function Ecommerce() {
     qn14: '',
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleCheckboxChange = (event, question) => {
     const value = event.target.value;
     const updatedFormData = { ...ecomformData, [question]: [...ecomformData[question], value] };
     setEcomFormData(updatedFormData);
   };
+
+  const handleTextChange = (event, question) => {
+    const value = event.target.value;
+    const updatedFormData = { ...ecomformData, [question]: [...ecomformData[question], value] };
+    setEcomFormData(updatedFormData);
+  };
+
 
   const handleRadioChange = (event, question) => {
     const value = event.target.value;
@@ -33,6 +46,7 @@ export default function Ecommerce() {
   // Media.js
 const handleSubmit = async (e) => {
 e.preventDefault();
+setIsLoading(true); 
 
 try {
   const response = await fetch('http://localhost:8000/api/ecom/submitEcomForm', { // Update the URL
@@ -43,10 +57,17 @@ try {
     body: JSON.stringify(ecomformData),
   });
 
+  if(!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
   const data = await response.json();
   console.log(data);
+  navigate('/result', {state: {data}});
 } catch (error) {
   console.error(error);
+} finally {
+  setIsLoading(false);
 }
 };
 
@@ -78,8 +99,7 @@ try {
                 onChange={(e) => handleCheckboxChange(e, 'qn2')} /> Cybersecurity and fraud prevention   <br />
                 </label>
                 <label><b>3. What is the expected peak sales period?   </b><br/>
-                <input type="radio" name="qn3" value="Yes" onChange={(e) => handleRadioChange(e, 'qn3')} /> Yes <br />
-                <input type="radio" name="qn3" value="No" onChange={(e) => handleRadioChange(e, 'qn3')} /> No <br />
+                <input type="text" name="qn3"  onChange={(e) => handleTextChange(e, 'qn3')} />  <br />
                 </label>
                 <label><b>4. Are you interested in making your website load faster and ensuring a better experience for your visitors?  </b><br/>
                 <input type="radio" name="qn4" value="Yes" onChange={(e) => handleRadioChange(e, 'qn4')} /> Yes <br />
@@ -131,7 +151,8 @@ try {
                 <input type="radio" name="qn14" value="Yes" onChange={(e) => handleRadioChange(e, 'qn14')} /> Yes <br />
                 <input type="radio" name="qn14" value="No" onChange={(e) => handleRadioChange(e, 'qn14')} /> No <br />
                 </label>
-                <center><button  className="btn1" >Submit</button></center>
+                <center><button  className="btn1" disabled={isLoading}>Submit</button></center>
+                {isLoading && <p>Loading...</p>}
             </div>
         </form>
     </div>

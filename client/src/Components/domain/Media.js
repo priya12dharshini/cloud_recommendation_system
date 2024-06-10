@@ -1,8 +1,12 @@
 import React, { useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import './domain.css'
 
 
 export default function Media() {
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
       qn1: [],
       qn2: [],
@@ -16,12 +20,19 @@ export default function Media() {
       qn10: '',
     });
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleCheckboxChange = (event, question) => {
       const value = event.target.value;
       const updatedFormData = { ...formData, [question]: [...formData[question], value] };
       setFormData(updatedFormData);
     };
-  
+    
+    const handleRadioChange = (event, question) => {
+      const value = event.target.value;
+      setFormData({ ...formData, [question]: value });
+    };
+
     const handleTextChange = (event, question) => {
       const value = event.target.value;
       const updatedFormData = { ...formData, [question]: value };
@@ -31,6 +42,7 @@ export default function Media() {
     // Media.js
 const handleSubmit = async (e) => {
   e.preventDefault();
+  setIsLoading(true); 
 
   try {
     const response = await fetch('http://localhost:8000/api/media/submitForm', { // Update the URL
@@ -41,10 +53,17 @@ const handleSubmit = async (e) => {
       body: JSON.stringify(formData),
     });
 
+    if(!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
     const data = await response.json();
     console.log(data);
+    navigate('/result', {state: {data}});
   } catch (error) {
     console.error(error);
+  } finally {
+    setIsLoading(false);
   }
 };
 
@@ -79,23 +98,31 @@ const handleSubmit = async (e) => {
                 onChange={(e) => handleCheckboxChange(e, 'qn2')}/> Hosting Website <br />
                 </label>
                 <label name="qn3"><b>3. Are you looking to enhance viewer engagement through interactive features like polls and Q&A?  </b><br/>
-                <input type="text" name="qn3" onChange={(e) => handleTextChange(e, 'qn3')}/> <br />
+                <input type="radio" name="qn3" value="Yes" onChange={(e) => handleRadioChange(e, 'qn3')} /> Yes <br />
+                <input type="radio" name="qn3" value="No" onChange={(e) => handleRadioChange(e, 'qn3')} /> No <br />
                 </label>
                 <label><b>4. Would you like to implement a media chatbot for viewer inquiries and support?</b></label><br/>
-                <input type="text" name="qn4" onChange={(e) => handleTextChange(e,'qn4')} /> <br />
+                <input type="radio" name="qn4" value="Yes" onChange={(e) => handleRadioChange(e, 'qn4')} /> Yes <br />
+                <input type="radio" name="qn4" value="No" onChange={(e) => handleRadioChange(e, 'qn4')} /> No <br />
                 <label><b>5. Do you require a cloud solution for live streaming and event broadcasting to a global audience?</b></label><br/>
-                <input type="text" name="qn5" onChange={(e) => handleTextChange(e,'qn5')}/> <br />
+                <input type="radio" name="qn5" value="Yes" onChange={(e) => handleRadioChange(e, 'qn5')} /> Yes <br />
+                <input type="radio" name="qn5" value="No" onChange={(e) => handleRadioChange(e, 'qn5')} /> No <br />
                 <label><b>6. Do you need cloud-based tools for video editing and post-production tasks?  </b></label><br/>
-                <input type="text" name="qn6" onChange={(e) => handleTextChange(e,'qn6')} /> <br />
+                <input type="radio" name="qn6" value="Yes" onChange={(e) => handleRadioChange(e, 'qn6')} /> Yes <br />
+                <input type="radio" name="qn6" value="No" onChange={(e) => handleRadioChange(e, 'qn6')} /> No <br />
                 <label><b>7. Do you require a cloud solution for content localization and multilingual subtitles for global audiences?</b></label><br/>
-                <input type="text" name="qn7" onChange={(e) => handleTextChange(e,'qn7')}/> <br />
+                <input type="radio" name="qn7" value="Yes" onChange={(e) => handleRadioChange(e, 'qn7')} /> Yes <br />
+                <input type="radio" name="qn7" value="No" onChange={(e) => handleRadioChange(e, 'qn7')} /> No <br />
                 <label><b>8. Are you looking for a system to manage digital rights and content licensing for media distribution?</b></label><br/>
-                <input type="text" name="qn8" onChange={(e) => handleTextChange(e,'qn8')}/> <br />
+                <input type="radio" name="qn8" value="Yes" onChange={(e) => handleRadioChange(e, 'qn8')} /> Yes <br />
+                <input type="radio" name="qn8" value="No" onChange={(e) => handleRadioChange(e, 'qn8')} /> No <br />
                 <label><b>9. Are there any specific geographic regions / requirements for your users?</b></label><br/>
                 <textarea name="qn9" onChange={(e) => handleTextChange(e,'qn9')}></textarea><br/>
                 <label><b>10. Are you interested in managing and tracking viewer engagement and viewer feedback effectively?</b></label><br/>
-                <input type="text" name="qn10" onChange={(e) => handleTextChange(e,'qn10')}/> <br />
-                <center><button className="btn1">Submit</button></center>
+                <input type="radio" name="qn10" value="Yes" onChange={(e) => handleRadioChange(e, 'qn10')} /> Yes <br />
+                <input type="radio" name="qn10" value="No" onChange={(e) => handleRadioChange(e, 'qn10')} /> No <br />
+                <center><button className="btn1" disabled={isLoading}>Submit</button></center>
+                {isLoading && <p>Loading...</p>}
             </div>
         </form>
     </div>
