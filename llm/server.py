@@ -34,7 +34,7 @@ async def llm(input_data: dict):  # Modify the function signature to accept Inpu
     # print(input_data)
     # Define the API URL and API key
     api_url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
-    api_key = "AIzaSyAntNnxW9SE1_g035Qm3yIR7vZsmVuEns8"
+    api_key = "your_google_api_key"
 
     # Define headers
     headers = {
